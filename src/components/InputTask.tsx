@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask } from "../store/todoSlice";
 import type { RootState } from "../store/store";
@@ -7,6 +7,7 @@ import type { AppDispatch } from "../store/store";
 type DispatchProps = {
   dispatch: AppDispatch;
   todo: string;
+  setTodo: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function InputTask() {
@@ -28,12 +29,15 @@ export default function InputTask() {
           value={todo}
           onChange={(e) => setTodo(e.target.value)}
         />
-        <AddTask todo={todo} dispatch={dispatch} />
+        <AddTask todo={todo} dispatch={dispatch} setTodo={setTodo} />
       </div>
       <div>
         <ul>
           {todos.map((todo, id) => (
-            <li key={id}>{todo}</li>
+            <li key={id} style={{ paddingBottom: "1rem", cursor: "pointer" }}>
+              <span style={{ marginRight: "1rem" }}>{todo}</span>
+              <span>❌</span>
+            </li>
           ))}
         </ul>
       </div>
@@ -41,10 +45,20 @@ export default function InputTask() {
   );
 }
 
-export function AddTask({ dispatch, todo }: DispatchProps) {
+export function AddTask({ dispatch, todo, setTodo }: DispatchProps) {
+  function clearInput() {
+    setTodo("");
+  }
   return (
     <div>
-      <button onClick={() => dispatch(addTask(todo))}>Add to Task</button>
+      <button
+        onClick={() => {
+          dispatch(addTask(todo));
+          clearInput();
+        }}
+      >
+        Add to Task
+      </button>
     </div>
   );
 }
