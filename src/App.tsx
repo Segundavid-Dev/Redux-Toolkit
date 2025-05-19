@@ -5,9 +5,9 @@ import TodoList from "./components/TodoList";
 
 function App() {
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center min-h-screen my-10">
       <div className="container mx-auto">
-        <div className="bg-white w-[50vw] mx-auto p-4 rounded-lg shadow-md">
+        <div className="bg-white w-[50vw] mx-auto p-8 rounded-lg shadow-md">
           <Header />
           <Input />
           <Filter />
