@@ -1,5 +1,6 @@
-import Header from "./Header";
-import Input from "./Input";
+import Filter from "./components/Filter";
+import Header from "./components/Header";
+import Input from "./components/Input";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
         <div className="bg-white w-[50vw] mx-auto p-4 rounded-lg shadow-md">
           <Header />
           <Input />
+          <Filter />
         </div>
       </div>
     </div>
