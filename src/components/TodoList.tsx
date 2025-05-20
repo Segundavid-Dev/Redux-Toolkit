@@ -3,7 +3,7 @@ import { ModalContext } from "@/context/ModalContext";
 
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "@/store/store";
-import { removeTask, editTask, selectTask } from "@/Todo/todoSlice";
+import { removeTask, selectTask } from "@/Todo/todoSlice";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -35,7 +35,6 @@ export default function TodoList() {
               onClick={() => {
                 handleShowModal();
                 dispatch(selectTask(item.id));
-                dispatch(editTask(item.task));
               }}
             />
             <FontAwesomeIcon

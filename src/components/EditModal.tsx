@@ -1,6 +1,8 @@
-import { useContext, useEffect } from "react";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
 import { ModalContext } from "@/context/ModalContext";
+
+import { editTask } from "@/Todo/todoSlice";
 
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "@/store/store";
@@ -10,6 +12,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
 export default function EditModal() {
+  const dispatch = useDispatch();
   const selectedTask = useSelector(
     (state: RootState) => state.todo.selectedTask
   );
@@ -47,7 +50,15 @@ export default function EditModal() {
                 value={updatedTask}
                 onChange={(e) => setUpdatedTask(e.target.value)}
               />
-              <button className="border p-2 bg-[#238638] text-white rounded-md cursor-pointer transition duration-300 hover:bg-[#3FB558]">
+              <button
+                className="border p-2 bg-[#238638] text-white rounded-md cursor-pointer transition duration-300 hover:bg-[#3FB558]"
+                onClick={() => {
+                  dispatch(
+                    editTask({ id: selectedTask?.id, task: updatedTask })
+                  );
+                  handleCloseModal();
+                }}
+              >
                 Update task
               </button>
             </div>
