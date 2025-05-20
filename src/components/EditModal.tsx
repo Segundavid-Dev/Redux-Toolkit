@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { ModalContext } from "@/context/ModalContext";
 
@@ -10,10 +10,10 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
 export default function EditModal() {
-  const [updatedTask, setUpdatedTask] = useState("");
   const selectedTask = useSelector(
     (state: RootState) => state.todo.selectedTask
   );
+  const [updatedTask, setUpdatedTask] = useState(selectedTask?.task || "");
 
   const modalContext = useContext(ModalContext);
   const { modal, setModal } = modalContext;
@@ -21,6 +21,10 @@ export default function EditModal() {
   function handleCloseModal() {
     setModal((modal) => !modal);
   }
+
+  useEffect(() => {
+    setUpdatedTask(selectedTask?.task || "");
+  }, [selectedTask]);
 
   return (
     <div>
@@ -40,7 +44,7 @@ export default function EditModal() {
               <input
                 type="text"
                 className="border-2 border-gray-500 p-2 rounded-lg"
-                value={selectedTask?.task}
+                value={updatedTask}
                 onChange={(e) => setUpdatedTask(e.target.value)}
               />
               <button className="border p-2 bg-[#238638] text-white rounded-md cursor-pointer transition duration-300 hover:bg-[#3FB558]">
