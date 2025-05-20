@@ -7,6 +7,7 @@ type todoType = {
 
 type initialStateTypes = {
   todos: todoType[];
+  selectedTask?: todoType;
 };
 
 const initialState: initialStateTypes = {
@@ -26,11 +27,18 @@ export const todoSlice = createSlice({
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
     editTask: (state, action) => {
-      console.log(action.payload);
-      state.todos = [...state.todos];
+      const { id, task } = action.payload;
+      state.todos = state.todos.map((todo) =>
+        todo.id === id ? { ...todo, task } : todo
+      );
+    },
+    selectTask: (state, action) => {
+      state.selectedTask = state.todos.find(
+        (todo) => todo.id === action.payload
+      );
     },
   },
 });
 
-export const { addTask, removeTask, editTask } = todoSlice.actions;
+export const { addTask, removeTask, editTask, selectTask } = todoSlice.actions;
 export default todoSlice.reducer;

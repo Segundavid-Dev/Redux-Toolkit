@@ -3,7 +3,7 @@ import { ModalContext } from "@/context/ModalContext";
 
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "@/store/store";
-import { removeTask, editTask } from "@/Todo/todoSlice";
+import { removeTask, editTask, selectTask } from "@/Todo/todoSlice";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -12,13 +12,12 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 export default function TodoList() {
   const modalContext = useContext(ModalContext);
   // destructure out state values
-  const { modal, setModal } = modalContext;
+  const { setModal } = modalContext;
   const todos = useSelector((state: RootState) => state.todo.todos);
   const dispatch = useDispatch();
 
   function handleShowModal() {
     setModal(true);
-    console.log(modal);
   }
 
   return (
@@ -35,6 +34,7 @@ export default function TodoList() {
               className=" cursor-pointer text-[14px] mr-3"
               onClick={() => {
                 handleShowModal();
+                dispatch(selectTask(item.id));
                 dispatch(editTask(item.task));
               }}
             />
