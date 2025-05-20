@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+type todoType = {
+  id: number;
+  task: string;
+};
+
 type initialStateTypes = {
-  todos: string[];
+  todos: todoType[];
 };
 
 const initialState: initialStateTypes = {
@@ -13,11 +18,15 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     addTask: (state, action) => {
-      if (action.payload === "") return;
+      if (action.payload.task.trim() === "") return;
+      console.log(action);
       state.todos = [...state.todos, action.payload];
+    },
+    removeTask: (state, action) => {
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
     },
   },
 });
 
-export const { addTask } = todoSlice.actions;
+export const { addTask, removeTask } = todoSlice.actions;
 export default todoSlice.reducer;

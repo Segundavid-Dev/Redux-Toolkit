@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "@/store/store";
+import { useDispatch } from "react-redux";
 import { addTask } from "@/Todo/todoSlice";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,7 +26,7 @@ export default function Input() {
         <button
           className="px-4 py-3 rounded-lg text-white bg-gradient-to-r from-purple-500 via-blue-500 to-blue-600  cursor-pointer text-[14px] absolute right-4 top-1/2 -translate-y-1/2"
           onClick={() => {
-            dispatch(addTask(todo));
+            dispatch(addTask({ id: Date.now(), task: todo }));
             handleClearInput();
           }}
         >
