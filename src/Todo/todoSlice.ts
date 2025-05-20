@@ -23,7 +23,7 @@ export const todoSlice = createSlice({
       state.todos = [...state.todos, action.payload];
     },
     removeTask: (state, action) => {
-      state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
   },
 });
