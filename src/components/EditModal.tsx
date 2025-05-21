@@ -33,7 +33,7 @@ export default function EditModal() {
     <div>
       {modal && (
         <div className="fixed inset-0 flex items-center justify-center bg-[rgba(0,0,0,0.8)]">
-          <div className="bg-white text-gray-500 p-5 rounded-lg relative">
+          <div className="bg-white text-black p-5 rounded-lg relative">
             <FontAwesomeIcon
               icon={faXmark}
               className="absolute top-[-10px] right-0 cursor-pointer bg-red-500 text-white px-2 py-[5px] rounded-full"
