@@ -9,12 +9,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
-export default function TodoList() {
+import type { searchType } from "@/types";
+
+export default function TodoList({ search }: searchType) {
   const modalContext = useContext(ModalContext);
   // destructure out state values
   const { setModal } = modalContext;
   const todos = useSelector((state: RootState) => state.todo.todos);
   const dispatch = useDispatch();
+
+  const filteredTodos = todos.filter((todo) =>
+    todo.task.toLowerCase().includes(search.toLowerCase())
+  );
 
   function handleShowModal() {
     setModal(true);
@@ -22,7 +28,7 @@ export default function TodoList() {
 
   return (
     <ul className="">
-      {todos.map((item) => (
+      {filteredTodos.map((item) => (
         <li
           key={item.id}
           className="flex items-center justify-between mb-2 text-gray-500 px-5 py-3 border mt-5 rounded-lg border-gray-500"

@@ -1,15 +1,6 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "@/store/store";
-export default function FilterSearch() {
-  const todos = useSelector((state: RootState) => state.todo.todos);
-  const [search, setSearch] = useState("");
+import type { searchType } from "@/types";
 
-  // UI level filtering
-  const filteredTodos = todos.filter((todo) =>
-    todo.task.toLocaleLowerCase().includes(search.toLowerCase())
-  );
-
+export default function FilterSearch({ search, setSearch }: searchType) {
   return (
     <div>
       <h2 className="bg-gradient-to-r from-purple-500 via-blue-500 to-blue-600 bg-clip-text font-bold text-transparent text-[20px] pb-2">

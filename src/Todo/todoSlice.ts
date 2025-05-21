@@ -37,15 +37,8 @@ export const todoSlice = createSlice({
         (todo) => todo.id === action.payload
       );
     },
-    searchTasks: (state, action) => {
-      if (action.payload === "") {
-        state.todos;
-      }
-      state.todos = action.payload;
-    },
   },
 });
 
-export const { addTask, removeTask, editTask, selectTask, searchTasks } =
-  todoSlice.actions;
+export const { addTask, removeTask, editTask, selectTask } = todoSlice.actions;
 export default todoSlice.reducer;
