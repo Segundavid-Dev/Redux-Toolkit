@@ -18,6 +18,7 @@ export default function TodoList({ search }: searchType) {
   const todos = useSelector((state: RootState) => state.todo.todos);
   const dispatch = useDispatch();
 
+  // returns true for all todo is search is empty
   const filteredTodos = todos.filter((todo) =>
     todo.task.toLowerCase().includes(search.toLowerCase())
   );
