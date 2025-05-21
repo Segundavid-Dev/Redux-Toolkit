@@ -5,7 +5,7 @@ import ModalProvider from "./context/ModalProvider";
 function App() {
   return (
     <ModalProvider>
-      <div className="flex items-center justify-center min-h-screen my-10">
+      <div className="flex items-center justify-center min-h-screen my-10 max-sm:my-3">
         <div className="container mx-auto">
           <div className="bg-white w-[50vw] mx-auto p-8 rounded-lg shadow-md max-sm:w-[90vw]">
             <TodoParent />
