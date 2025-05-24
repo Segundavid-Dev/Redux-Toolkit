@@ -20,3 +20,7 @@ All these states are been handled by RTK in my slice where i created a gloabal c
 
 !I faced a bug with the updating of state in my redux store while working on the search functionality. I had to remove the search logic from the store and refactored it to be only on the UI using the .includes() array method and rendering the returned array in my TodoList.  
 This .includes() method returns true for all the array if the search param is empty which in this case, my state dosen't change all added task renders as it should
+
+#### GITHUB ACTIONS
+
+- Making some tweaks on the yaml configurations
