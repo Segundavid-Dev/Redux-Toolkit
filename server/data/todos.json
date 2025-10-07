@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "task": "Complete Express JS route based setup"
+  },
+  {
+    "id": 2,
+    "task": "Write API documentation for todos endpoint"
+  },
+  {
+    "id": 3,
+    "task": "Add dotenv configurations for environment variables"
+  },
+  {
+    "id": 4,
+    "task": "Implement error handling"
+  },
+  {
+    "id": 5,
+    "task": "Refactor code to use async/await"
+  },
+  {
+    "id": 6,
+    "task": "Setup MongoDB connection using Moongose"
+  },
+  {
+    "id": 7,
+    "task": "Create frontend interface for adding todos"
+  },
+  {
+    "id": 8,
+    "task": "test API endpoint using postman"
+  },
+  {
+    "id": 9,
+    "task": "Add CORS middleware for frontend request"
+  },
+  {
+    "id": 10,
+    "task": "Deploy app on render"
+  }
+]
