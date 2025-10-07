@@ -38,9 +38,18 @@ app.get("/api/todos/:id", (req, res) => {
     res.status(404).json({ error: "Invalid id" });
   }
 
+  if (parseId > todos.length)
+    return res.status(404).json({ error: "No todo found with that Id" });
+
   const findTask = todos.find((todo) => todo.id === parseId);
 
   res.status(200).json(findTask);
+});
+
+// post request -> creating a new resource
+app.post("/api/todos", (req, res) => {
+  // read the request body as an object from the req object
+  const requestBody = req.body;
 });
 
 // run the server on specified port
