@@ -27,6 +27,22 @@ app.get("/api/todos", (req, res) => {
   res.status(200).json(todos);
 });
 
+app.get("/api/todos/:id", (req, res) => {
+  const { id } = req.params;
+
+  // convert id from string to number
+  const parseId = parseInt(id);
+
+  // validate req params
+  if (isNaN(id)) {
+    res.status(404).json({ error: "Invalid id" });
+  }
+
+  const findTask = todos.find((todo) => todo.id === parseId);
+
+  res.status(200).json(findTask);
+});
+
 // run the server on specified port
 app.listen(PORT, () => {
   console.log(`server started at port ${PORT} `);
