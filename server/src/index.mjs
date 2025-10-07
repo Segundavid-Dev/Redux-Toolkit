@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import { readFileSync } from "node:fs";
+import { writeFileSync } from "node:fs";
 
 const app = express();
 
@@ -49,7 +50,30 @@ app.get("/api/todos/:id", (req, res) => {
 // post request -> creating a new resource
 app.post("/api/todos", (req, res) => {
   // read the request body as an object from the req object
+
+  // creation of id is done by the database so i would mimic that operation here
+
+  // increment id based on json object
+  const id = todos.length + 1;
+
   const requestBody = req.body;
+  const newTask = { id, ...requestBody };
+
+  // write newTask into json file
+  todos.push(newTask);
+
+  // write update array back into todo json
+  writeFileSync(
+    "../server/data/todos.json",
+    JSON.stringify(todos, null, 2),
+    "utf-8"
+  );
+
+  // created new resource successfully
+  res.status(201).json({
+    message: "New resource created successfully",
+    newTask,
+  });
 });
 
 // run the server on specified port
