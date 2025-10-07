@@ -17,11 +17,15 @@ const todos = JSON.parse(readFileSync("../server/data/todos.json", "utf-8"));
 // convert into a json object
 
 app.get("/", (req, res) => {
-  res.send(todos);
+  res.send("CRUD OPERATIONS");
 });
 
 // perform CRUD OPERATIONS USING HTTP METHODS (create, read, update, delete)
-// app.get("/api/todos", ());
+
+// get all todos
+app.get("/api/todos", (req, res) => {
+  res.status(200).json(todos);
+});
 
 // run the server on specified port
 app.listen(PORT, () => {
