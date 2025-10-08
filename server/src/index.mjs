@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { readFileSync } from "node:fs";
 import { writeFileSync } from "node:fs";
+import { parse } from "node:path";
 
 const app = express();
 
@@ -74,6 +75,38 @@ app.post("/api/todos", (req, res) => {
     message: "New resource created successfully",
     newTask,
   });
+});
+
+// update a resource partially
+app.patch("/api/todos/:id", (req, res) => {
+  // destructure required parameters from request object
+  const { id } = req.params;
+  const requestBody = req.body;
+
+  const parsedId = parseInt(id);
+
+  // validate req params
+  if (isNaN(id)) {
+    res.status(404).json({ error: "Invalid id" });
+  }
+
+  if (parsedId > todos.length)
+    return res.status(404).json({ error: "No todo found with that Id" });
+
+  // findTask based of id
+  let findTaskIndex = todos.findIndex((todo) => todo.id === parsedId);
+
+  // update task specific object using index obtained
+  todos[findTaskIndex] = { ...todos[findTaskIndex], ...requestBody };
+
+  // write into json updated version
+  writeFileSync(
+    "../server/data/todos.json",
+    JSON.stringify(todos, null, 2),
+    "utf-8"
+  );
+
+  res.sendStatus(200);
 });
 
 // run the server on specified port
