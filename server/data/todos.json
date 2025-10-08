@@ -8,10 +8,6 @@
     "task": "Write API documentation for todos endpoint"
   },
   {
-    "id": 3,
-    "task": "lorem lorem lorem lorem lorem test testing testing123"
-  },
-  {
     "id": 4,
     "task": "Implement error handling"
   },

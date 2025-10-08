@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { readFileSync } from "node:fs";
 import { writeFileSync } from "node:fs";
 import { parse } from "node:path";
+import { todo } from "node:test";
 
 const app = express();
 
@@ -107,6 +108,32 @@ app.patch("/api/todos/:id", (req, res) => {
   );
 
   res.sendStatus(200);
+});
+
+// Delete resource
+app.delete("/api/todos/:id", (req, res) => {
+  const { id } = req.params;
+
+  // find user based of index
+  const parseId = parseInt(id);
+
+  if (isNaN(id)) {
+    res.status(404).json({ error: "Invalid id" });
+  }
+
+  const findTaskIndex = todos.findIndex((todo) => todo.id === parseId);
+
+  // deleted based of Id
+  todos.splice(findTaskIndex, 1);
+
+  // write updated file
+  writeFileSync(
+    "../server/data/todos.json",
+    JSON.stringify(todos, null, 2),
+    "utf-8"
+  );
+
+  res.status(200).json({ message: "Task deleted successfully" });
 });
 
 // run the server on specified port
